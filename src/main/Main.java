@@ -23,10 +23,6 @@ public class Main {
                 new TeacherOperation(new ServiceArrayTeacher(), new ServiceWriteTeacher()),
                 new StudentOperations(new ServiceArrayStudent(), new ServiceWriteStudent()));
         menuMain.menuPrincipal();*/
-        Scanner scanner = new Scanner(System.in);
-        OperationAssign operationAssign = new OperationAssign();
-        operationAssign.loadAssign(scanner);
-        System.out.println(operationAssign.showAssign());
 
     }
 
