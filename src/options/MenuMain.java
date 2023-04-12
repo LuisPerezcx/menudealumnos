@@ -1,5 +1,6 @@
 package options;
 
+import grades.Grades;
 import operations.StudentOperations;
 import operations.SubjectOperation;
 import operations.TeacherOperation;
@@ -26,10 +27,12 @@ public class MenuMain {
         showOption();
         String menuOption = scanner.next();
         switch (menuOption) {
-            case "Registrar" ->
+            case "Registrar","1"->
                     registrationMenu.registration(scanner, subjectOperation, teacherOperation, studentOperations);
-            case "Consultar" ->
+            case "Consultar","2" ->
                     QueryMenu.registrationAssignment(scanner, subjectOperation, teacherOperation, studentOperations);
+            case "Registrar calificaciones","3" ->
+                    QueryMenu.registerGrades(studentOperations,subjectOperation);
             default -> System.out.println("Opción invalida");
         }
         menuPrincipal();
@@ -38,10 +41,12 @@ public class MenuMain {
 
     private void showOption() {
         System.out.println("""
+                ----------------------------------------------------------------------------\s
                 Bienvenido al sistema de asignación de materias:\s
                 Escriba la operación a realizar:
                 1.- Registrar\s
-                2.- Consultar\s""");
+                2.- Consultar\s
+                3.- Registrar calificaciones""");
     }
 
 }

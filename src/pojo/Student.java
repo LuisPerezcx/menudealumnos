@@ -4,6 +4,7 @@ public class Student extends Person {
     private String idStudent;
     private int grade;
     private String collegeCareer;
+    public Subject subject[];
 
     //Constructores de la clase
     public Student() {
@@ -16,7 +17,9 @@ public class Student extends Person {
         this.grade = grade;
         this.collegeCareer = collegeCareer;
     }
-
+    public void setSubject(Subject subject[]){
+        this.subject=subject;
+    }
     public void setIdStudent(String idStudent) {
         this.idStudent = idStudent;
     }

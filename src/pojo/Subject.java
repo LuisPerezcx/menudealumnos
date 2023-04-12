@@ -4,7 +4,6 @@ public class Subject {
     private String idSubject;
     private String subjectName;
     private int credits;
-
     public Subject() {
 
     }

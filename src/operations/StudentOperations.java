@@ -30,7 +30,21 @@ public class StudentOperations {
     }
 
     public int countStudents() {
-        return students.length;
+        if(students==null){
+            System.out.println("- NO HAY ALUMNOS REGISTRADOS -");
+            return 0;
+        }else return students.length;
     }
-
+    public int showStudents(){
+        if(students==null) {
+            System.out.println("- NO HAY ALUMNOS REGISTRADOS -");
+            return 0;
+        }
+        for (Student student : students) {
+            System.out.println(" ");
+            System.out.println(student);
+            System.out.println("*******************************************************************");
+        }
+        return 1;
+    }
 }

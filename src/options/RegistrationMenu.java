@@ -3,6 +3,7 @@ package options;
 import operations.StudentOperations;
 import operations.SubjectOperation;
 import operations.TeacherOperation;
+import pojo.Student;
 
 import java.util.Scanner;
 
@@ -12,10 +13,10 @@ public class RegistrationMenu {
         showOption();
         String option = scanner.next();
         switch (option) {
-            case "Alumnos" -> studentOperations.registerStudents(scanner);
-            case "Profesores" -> teacherOperation.registerTeachers(scanner);
-            case "Materias" -> subjectOperation.registerSubjects(scanner);
-            case "Regresar" ->
+            case "Alumnos","1" -> studentOperations.registerStudents(scanner);
+            case "Profesores","2" -> teacherOperation.registerTeachers(scanner);
+            case "Materias","3" -> subjectOperation.registerSubjects(scanner,studentOperations);
+            case "Regresar","4" ->
                     new MenuMain(scanner, subjectOperation, teacherOperation, studentOperations).menuPrincipal();
             default -> System.out.println("Opción invalida");
         }
