@@ -4,7 +4,7 @@ public class Student extends Person {
     private String idStudent;
     private int grade;
     private String collegeCareer;
-    public Subject subject[];
+    public Subject[] subject;
 
     //Constructores de la clase
     public Student() {
@@ -17,7 +17,7 @@ public class Student extends Person {
         this.grade = grade;
         this.collegeCareer = collegeCareer;
     }
-    public void setSubject(Subject subject[]){
+    public void setSubject(Subject[] subject){
         this.subject=subject;
     }
     public void setIdStudent(String idStudent) {
@@ -43,12 +43,18 @@ public class Student extends Person {
     public String getCollegeCareer() {
         return collegeCareer;
     }
-
+    public Subject[] getSubjectsStudent() {
+        if(subject==null){
+            System.out.print("no hay materias registradas: ");
+        }
+        return subject;
+    }
     @Override
     public String toString() {
         return "Id: " + idStudent
                 + super.toString()
                 + " Matricula: " + grade
-                + " Carrera: " + collegeCareer;
+                + " Carrera: " + collegeCareer
+                + "\nMateria(s) registrada(s): ";
     }
 }

@@ -1,5 +1,6 @@
 package operations;
 
+
 import operations.subjectsServices.ServiceArraySubject;
 import operations.subjectsServices.ServiceWriteSubject;
 import pojo.Student;
@@ -16,13 +17,11 @@ public class SubjectOperation {
     public SubjectOperation(ServiceArraySubject serviceArraySubject, ServiceWriteSubject serviceWriteSubject) {
         this.serviceArraySubject = serviceArraySubject;
         this.serviceWriteSubject = serviceWriteSubject;
-
     }
 
-
-    public void registerSubjects(Scanner scanner, StudentOperations studentOperation) {
-        Student student[]=studentOperation.requestStudents();
-        int bandera = checkStudents(studentOperation,scanner,student);
+    public void registerSubjects(Scanner scanner, StudentOperations studentOperation,SubjectOperation subjectOperation) {
+        Student[] student=studentOperation.requestStudents();
+        int bandera = studentOperation.checkStudents(studentOperation,scanner,student,subjectOperation);
         if(bandera==-1){
             System.out.println("----NO SE PUEDEN REGISTRAR MATERIAS----");
             return;
@@ -32,26 +31,12 @@ public class SubjectOperation {
                 serviceWriteSubject.writeData(scanner);
                 subjects[i] = serviceWriteSubject.readData();
                 student[bandera].setSubject(subjects);
+                System.out.println("Calificacion de la materia:");
+                Double cal = scanner.nextDouble();
+                student[bandera].subject[i].setCalfs(cal.doubleValue());
             }
         }
 
-    }
-    public int checkStudents(StudentOperations studentOperation,Scanner scanner, Student student[]){
-        if(studentOperation.showStudents()==0) {
-            return -1;
-        }
-        System.out.println("A que alumno deseas registrar materias");
-        System.out.println("ingresa el id del alumno al que quieres registrar materias");
-        String id=scanner.next();
-        int x=0;
-        while (!id.equals(student[x].getIdStudent())){
-            x++;
-            if(x>=student.length){
-                System.out.println("--NO SE ENCONTRO EL ID--");
-                return -1;
-            }
-        }
-        return x;
     }
 
     public Subject[] requestSubjects() {
@@ -60,8 +45,20 @@ public class SubjectOperation {
 
     public int countSubjects() {
         if(subjects==null){
-            System.out.println("- NO HAY MATERIAS REGISTRADOS -");
+            System.out.println("- NO HAY MATERIAS REGISTRADAS -");
             return 0;
         }else return subjects.length;
     }
+
+    /*public void showSubjects(SubjectOperation subjectOperation){
+        if(subjectOperation.requestSubjects()==null){
+            System.out.println("no hay materias registradas");
+            return;
+        }else {
+            for (Subject subject : subjectOperation.requestSubjects()) {
+                System.out.println(" ");
+                System.out.println(subject);
+            }
+        }
+    }*/
 }

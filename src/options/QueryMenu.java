@@ -1,6 +1,6 @@
 package options;
 
-import grades.Grades;
+import grades.GradesOperations;
 import operations.StudentOperations;
 import operations.SubjectOperation;
 import operations.TeacherOperation;
@@ -11,15 +11,18 @@ import pojo.Teacher;
 import java.util.Scanner;
 
 public class QueryMenu {
-    public static void registrationAssignment(Scanner scanner, SubjectOperation subjectOperation, TeacherOperation teacherOperation, StudentOperations studentOperations) {
+    public static void registrationAssignment(Scanner scanner, SubjectOperation subjectOperation, TeacherOperation teacherOperation, StudentOperations studentOperations, GradesOperations gradesOperations) {
         showOption();
         String option = scanner.next();
         switch (option) {
             case "Alumnos","1" -> {
+                int i=0;
                 for (Student student : studentOperations.requestStudents()) {
                     System.out.println(" ");
                     System.out.println(student);
+                    studentOperations.showSubjectsStudents(i);
                     System.out.println("*******************************************************************");
+                    i++;
                 }
             }
             case "Profesores","2" -> {
@@ -37,9 +40,9 @@ public class QueryMenu {
 
                 }
             }
-            case "Asignaciones","4" -> System.out.println("Sin implementación");
+            case "Promedios","4" -> gradesOperations.promedio(subjectOperation,studentOperations,scanner);
             case "Regresar","5" ->
-                    new MenuMain(scanner, subjectOperation, teacherOperation, studentOperations).menuPrincipal();
+                    new MenuMain(scanner, subjectOperation, teacherOperation, studentOperations,gradesOperations).menuPrincipal();
             default -> System.out.println("Opción invalida");
         }
     }
@@ -50,12 +53,9 @@ public class QueryMenu {
                 1.- Alumnos \s
                 2.- Profesores\s
                 3.- Materias\s
-                4.- Asignaciones\s
+                4.- Promedios\s
                 5.- Regresar\s
                 """);
     }
-    public static void  registerGrades(StudentOperations studentOperations, SubjectOperation subjectOperation){
-        Grades grades =  new Grades();
-        grades.grades(studentOperations,subjectOperation);
-    }
+
 }

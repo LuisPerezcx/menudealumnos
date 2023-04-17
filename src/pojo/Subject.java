@@ -4,6 +4,7 @@ public class Subject {
     private String idSubject;
     private String subjectName;
     private int credits;
+    public double calfs;
     public Subject() {
 
     }
@@ -13,7 +14,12 @@ public class Subject {
         this.subjectName = subjectName;
         this.credits = credits;
     }
-
+    public void setCalfs(double cal){
+        this.calfs = cal;
+    }
+    public double getCalfs(){
+        return calfs;
+    }
     public void setIdSubject(String idSubject) {
         this.idSubject = idSubject;
     }
@@ -42,7 +48,8 @@ public class Subject {
     public String toString() {
         return "Id: " + idSubject
                 + " Nombre de la materia: " + subjectName
-                + " Creditos de materia: " + credits;
+                + " Creditos de materia: " + credits
+                + " Calificacion registrada: " + calfs;
     }
 }
 

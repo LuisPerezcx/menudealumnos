@@ -1,6 +1,6 @@
 package options;
 
-import grades.Grades;
+import grades.GradesOperations;
 import operations.StudentOperations;
 import operations.SubjectOperation;
 import operations.TeacherOperation;
@@ -13,12 +13,14 @@ public class MenuMain {
     private final StudentOperations studentOperations;
     private final Scanner scanner;
     private final RegistrationMenu registrationMenu;
+    private final GradesOperations gradesOperations;
 
-    public MenuMain(Scanner scanner, SubjectOperation subjectOperation, TeacherOperation teacherOperation, StudentOperations studentOperations) {
+    public MenuMain(Scanner scanner, SubjectOperation subjectOperation, TeacherOperation teacherOperation, StudentOperations studentOperations,GradesOperations gradesOperations) {
         this.scanner = scanner;
         this.subjectOperation = subjectOperation;
         this.teacherOperation = teacherOperation;
         this.studentOperations = studentOperations;
+        this.gradesOperations = gradesOperations;
         registrationMenu = new RegistrationMenu();
     }
 
@@ -28,11 +30,9 @@ public class MenuMain {
         String menuOption = scanner.next();
         switch (menuOption) {
             case "Registrar","1"->
-                    registrationMenu.registration(scanner, subjectOperation, teacherOperation, studentOperations);
+                    registrationMenu.registration(scanner, subjectOperation, teacherOperation, studentOperations,gradesOperations);
             case "Consultar","2" ->
-                    QueryMenu.registrationAssignment(scanner, subjectOperation, teacherOperation, studentOperations);
-            case "Registrar calificaciones","3" ->
-                    QueryMenu.registerGrades(studentOperations,subjectOperation);
+                    QueryMenu.registrationAssignment(scanner, subjectOperation, teacherOperation, studentOperations,gradesOperations);
             default -> System.out.println("Opción invalida");
         }
         menuPrincipal();
@@ -45,8 +45,7 @@ public class MenuMain {
                 Bienvenido al sistema de asignación de materias:\s
                 Escriba la operación a realizar:
                 1.- Registrar\s
-                2.- Consultar\s
-                3.- Registrar calificaciones""");
+                2.- Consultar""");
     }
 
 }
